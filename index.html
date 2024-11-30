@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>freeteens</title>
+  <meta name="generator" content="WYSIWYG Web Builder 18 - https://www.wysiwygwebbuilder.com">
   <style>
     body {
       margin: 0;
@@ -12,134 +13,134 @@
       background-color: #000;
       color: #fff;
     }
+
     #container {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
     }
+
     #takeTest {
       color: yellow;
-      font-size: 30px;
+      font-size: 24px;
       margin: 20px 0;
     }
+
     #instructions {
       color: red;
-      font-size: 25px;
+      font-size: 20px;
       margin: 10px 0;
       display: none;
     }
+
     #getOffer {
-      color: yellow;
+      color: white;
       font-size: 18px;
-      margin: 20px 0;
-      font-weight: bold;
+      margin: 10px 0;
     }
-    #justClick {
-      color: yellow;
-      font-size: 22px;
-      margin-top: 10px;
-      font-weight: normal;
-      display: block;
-    }
+
     img {
       max-width: 100%;
       height: auto;
       cursor: pointer;
     }
+
     #startButton {
       background-color: yellow;
       color: black;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
-      padding: 12px 25px;
+      padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       margin-top: 20px;
     }
+
     #startButton:hover {
       background-color: orange;
     }
+
+    /* Увеличенный текст для мобильной версии */
     @media (max-width: 600px) {
-      #takeTest { font-size: 30px; }
-      #instructions { font-size: 20px; }
-      #getOffer { font-size: 20px; }
-      #justClick { font-size: 18px; }
-      #startButton { font-size: 18px; }
+      #takeTest {
+        font-size: 24px;
+      }
+
+      #instructions {
+        font-size: 16px;
+      }
+
+      #getOffer {
+        font-size: 20px;
+      }
+
+      #startButton {
+        font-size: 16px;
+      }
     }
   </style>
   <script>
+    // Переводы для Tier 1, 2 и 3 языков
     const translations = {
-      en: { takeTest: "TAKE A SHORT TEST", instructions: "THE VIDEO WILL RUN AFTER THE TEST.", getOffer: "The video will start automatically on the 'Thank You!' page.", justClick: "Just click GET OFFER.", startButton: "START TEST", updatedOffer: "DON'T RUSH, WATCH THIS.", updatedButton: "BONUS" },
-      es: { takeTest: "HAZ UNA PRUEBA CORTA", instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.", getOffer: "El video comenzará automáticamente en la página de 'Gracias!'", justClick: "Simplemente haz clic en OBTENER OFERTA.", startButton: "COMENZAR PRUEBA", updatedOffer: "NO TE APRESURES, MIRA ESTO.", updatedButton: "BONUS" },
-      pt: { takeTest: "FAÇA UM TESTE RÁPIDO", instructions: "O VÍDEO SERÁ EXECUTADO APÓS O TESTE.", getOffer: "O vídeo começará automaticamente na página de 'Obrigado!'", justClick: "Clique apenas em OBTER OFERTA.", startButton: "INICIAR TESTE", updatedOffer: "NÃO TENHA PRESSA, ASSISTA ISTO.", updatedButton: "BÔNUS" },
-      id: { takeTest: "LAKUKAN TES SINGKAT", instructions: "VIDEO AKAN BERJALAN SETELAH TES.", getOffer: "Video akan mulai secara otomatis di halaman 'Terima Kasih!'", justClick: "Cukup klik DAPATKAN PENAWARAN.", startButton: "MULAI TES", updatedOffer: "JANGAN TERBURU-BURU, TONTON INI.", updatedButton: "BONUS" },
-      th: { takeTest: "ทำแบบทดสอบสั้น", instructions: "วิดีโอจะเล่นหลังจากการทดสอบ.", getOffer: "วิดีโอจะเริ่มอัตโนมัติบนหน้า 'ขอบคุณ!'", justClick: "เพียงคลิก รับข้อเสนอ.", startButton: "เริ่มการทดสอบ", updatedOffer: "อย่ารีบเร่ง, ชมนี้.", updatedButton: "โบนัส" },
-      it: { takeTest: "FAI UN BREVE TEST", instructions: "IL VIDEO PARTIRÀ DOPO IL TEST.", getOffer: "Il video inizierà automaticamente nella pagina 'Grazie!'", justClick: "Clicca semplicemente su OTTIENI OFFERTA.", startButton: "INIZIA TEST", updatedOffer: "NON AFFRETTARTI, GUARDA QUESTO.", updatedButton: "BONUS" },
-      de: { takeTest: "MACHEN SIE EINEN KURZEN TEST", instructions: "DAS VIDEO WIRD NACH DEM TEST STARTEN.", getOffer: "Das Video startet automatisch auf der 'Danke!' Seite.", justClick: "Klicken Sie einfach auf ANGEBOT HOLEN.", startButton: "TEST STARTEN", updatedOffer: "NICHT ÜBERSTÜRZEN, SIEH DAS AN.", updatedButton: "BONUS" },
-      fr: { takeTest: "FAITES UN COURT TEST", instructions: "LA VIDÉO DÉMARRERA APRÈS LE TEST.", getOffer: "La vidéo commencera automatiquement sur la page 'Merci!'", justClick: "Cliquez simplement sur OBTENIR L'OFFRE.", startButton: "DÉMARRER LE TEST", updatedOffer: "NE VOUS PRÉCIPITEZ PAS, REGARDEZ CECI.", updatedButton: "BONUS" },
-      nl: { takeTest: "NEEM EEN KORTE TEST", instructions: "DE VIDEO START NA DE TEST.", getOffer: "De video start automatisch op de 'Bedankt!' pagina.", justClick: "Klik gewoon op AANBIEDING KRIJGEN.", startButton: "TEST STARTEN", updatedOffer: "HAAST JE NIET, BEKIJK DIT.", updatedButton: "BONUS" },
-      ph: { takeTest: "KUMUHA NG MAIKLING TEST", instructions: "TATAKBO ANG VIDEO PAGKATAPOS NG TEST.", getOffer: "Magsisimula ang video sa page na 'Salamat!'.", justClick: "I-click lang ang KUNIN ANG OFFER.", startButton: "SIMULAN ANG TEST", updatedOffer: "WAG MAGMADALI, PANOORIN ITO.", updatedButton: "BONUS" },
-      vn: { takeTest: "LÀM BÀI KIỂM TRA NGẮN", instructions: "VIDEO SẼ CHẠY SAU KHI KIỂM TRA.", getOffer: "Video sẽ tự động bắt đầu trên trang 'Cảm ơn!'", justClick: "Chỉ cần nhấp vào NHẬN ƯU ĐÃI.", startButton: "BẮT ĐẦU KIỂM TRA", updatedOffer: "ĐỪNG VỘI, XEM CÁI NÀY.", updatedButton: "THƯỞNG" },
-      my: { takeTest: "AMBIL UJIAN SINGKAT", instructions: "VIDEO AKAN DIPUTAR SETELAH TES.", getOffer: "Video akan dimulai secara otomatis di halaman 'Terima Kasih!'", justClick: "Cukup klik DAPATKAN TAWARAN.", startButton: "MULAI UJIAN", updatedOffer: "JANGAN TERBURU-BURU, LIHAT INI.", updatedButton: "BONUS" },
-      ru: { takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ", instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.", getOffer: "Видео начнётся автоматически на странице «Спасибо!»", justClick: "Просто нажмите ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ.", startButton: "НАЧНАТЬ ТЕСТ", updatedOffer: "НЕ СПЕШИТЕ, ПОСМОТРИТЕ ЭТО.", updatedButton: "БОНУС" },
-      hu: { takeTest: "CSINÁLJON EGY RÖVID TESZTET", instructions: "A VIDEÓ A TESZT UTÁN INDUL.", getOffer: "A videó automatikusan elindul a 'Köszönöm!' oldalon.", justClick: "Kattintson a KÍNÁLAT MEGKAPÁSA gombra.", startButton: "TESZT INDÍTÁSA", updatedOffer: "NE SIESSEN, NÉZZE MEG EZT.", updatedButton: "BÓNUSZ" },
-      bg: { takeTest: "НАПРАВЕТЕ КРАТЪК ТЕСТ", instructions: "ВИДЕОТО ЩЕ СТАРТИРА СЛЕД ТЕСТА.", getOffer: "Видеото ще започне автоматично на страницата 'Благодаря!'", justClick: "Просто кликнете върху ВЗЕМЕТЕ ОФЕРТАТА.", startButton: "ЗАПОЧНЕТЕ ТЕСТ", updatedOffer: "НЕ БЪРЗАЙТЕ, ГЛЕДАЙТЕ ТОВА.", updatedButton: "БОНУС" },
-      ar: { takeTest: "اخضع لاختبار قصير", instructions: "سيتم تشغيل الفيديو بعد الاختبار.", getOffer: "سيبدأ الفيديو تلقائيًا في صفحة 'شكرًا لك!'", justClick: "انقر فقط على الحصول على العرض.", startButton: "ابدأ الاختبار", updatedOffer: "لا تتسرع، شاهد هذا.", updatedButton: "مكافأة" }
+      en: {
+        takeTest: "TAKE A SHORT TEST",
+        instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
+        getOffer: "The video will start automatically on the “Thank You!” page.",
+        startButton: "START TEST"
+      },
+      ru: {
+        takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
+        instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
+        getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
+        startButton: "НАЧАТЬ ТЕСТ"
+      },
+      es: {
+        takeTest: "REALIZA UNA PRUEBA CORTA",
+        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
+        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
+        startButton: "COMENZAR PRUEBA"
+      },
+      // Добавить остальные переводы...
     };
 
+    // Установка языка
     function setLanguage() {
-      const userLang = navigator.language.slice(0, 2);
-      const lang = translations[userLang] ? userLang : 'en';
+      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
+      const lang = translations[userLang] ? userLang : 'en'; // Если язык неизвестен, использовать английский
 
       document.getElementById('takeTest').textContent = translations[lang].takeTest;
       document.getElementById('instructions').textContent = translations[lang].instructions;
       document.getElementById('getOffer').textContent = translations[lang].getOffer;
-      document.getElementById('justClick').textContent = translations[lang].justClick;
       document.getElementById('startButton').textContent = translations[lang].startButton;
-
-      document.body.dataset.lang = lang;
     }
 
-    function updateContent() {
-      const lang = document.body.dataset.lang || 'en';
-
-      document.getElementById('justClick').style.display = 'none';
-      document.getElementById('getOffer').textContent = translations[lang].updatedOffer;
-      const startButton = document.getElementById('startButton');
-      startButton.textContent = translations[lang].updatedButton;
-      startButton.onclick = () => window.open("https://freegets.github.io/bonus/", '_blank');
+    // Показать текст после клика
+    function showInstructions() {
+      document.getElementById('instructions').style.display = 'block';
     }
 
-    window.onload = function() {
+    // Функция для редиректа по типу устройства
+    function redirectToDeviceLink() {
+      const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
+      const desktopLink = "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}";
+
+      if (/Android/i.test(navigator.userAgent)) {
+        window.open(androidLink, "_blank");
+      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.open(iosLink, "_blank");
+      } else {
+        window.open(desktopLink, "_blank");
+      }
+    }
+
+    // Инициализация при загрузке страницы
+    window.onload = function () {
       setLanguage();
-
-      const links = {
-        android: "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}",
-        ios: "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}",
-        desktop: "https://tichairg.com/link?z=6488869&var={SOURCE_ID}&ymid={CLICK_ID}"
-      };
-
-      const userAgent = navigator.userAgent.toLowerCase();
-      const targetLink = /android/.test(userAgent)
-        ? links.android
-        : /iphone|ipod/.test(userAgent)
-        ? links.ios
-        : links.desktop;
-
-      document.getElementById('Image2').onclick = () => {
-        window.open(targetLink, '_blank');
-        updateContent();
-      };
-
-      document.getElementById('startButton').onclick = () => {
-        window.open(targetLink, '_blank');
-        updateContent();
-      };
-
-      document.getElementById('Image3').onclick = () => {
-        document.getElementById('instructions').style.display = 'block';
-      };
+      document.getElementById('Image2').onclick = redirectToDeviceLink;
+      document.getElementById('Image3').onclick = showInstructions;
+      document.getElementById('startButton').onclick = redirectToDeviceLink;
     };
   </script>
 </head>
@@ -156,16 +157,9 @@
     </div>
     <div>
       <p id="instructions">THE VIDEO WILL RUN AFTER THE TEST.</p>
+      <p id="getOffer">The video will start automatically on the “Thank You!” page.</p>
     </div>
-    <div>
-      <p id="getOffer">The video will start automatically on the 'Thank You!' page.</p>
-    </div>
-    <div>
-      <p id="justClick">Just click GET OFFER.</p>
-    </div>
-    <div>
-      <button id="startButton">START TEST</button>
-    </div>
+    <button id="startButton">START TEST</button>
   </div>
 </body>
 </html>
