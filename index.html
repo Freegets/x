@@ -81,38 +81,39 @@
     }
   </style>
   <script>
-    // Переводы для Tier 1, 2 и 3 языков
+    // Переводы для текста кнопки и сообщения
     const translations = {
       en: {
         takeTest: "TAKE A SHORT TEST",
         instructions: "THE VIDEO WILL RUN AFTER THE TEST.",
-        getOffer: "The video will start automatically on the “Thank You!” page.",
-        startButton: "START TEST"
+        initialOffer: "The video will start automatically on the “Thank You!” page.",
+        getOffer: "DON'T RUSH, TAKE A LOOK!",
+        initialButton: "START TEST",
+        updatedButton: "BONUS",
+        desktopBonusLink: "https://www.meendo.com/video/8308126_1597760?partner=26396",
+        mobileBonusLink: "https://m.meendo.com/video/8308126_1597760?partner=26396"
       },
       ru: {
         takeTest: "ПРОЙДИТЕ КОРОТКИЙ ТЕСТ",
         instructions: "ВИДЕО ЗАПУСТИТСЯ ПОСЛЕ ТЕСТА.",
-        getOffer: "Видео начнётся автоматически на странице «Спасибо!».",
-        startButton: "НАЧАТЬ ТЕСТ"
-      },
-      es: {
-        takeTest: "REALIZA UNA PRUEBA CORTA",
-        instructions: "EL VIDEO SE REPRODUCIRÁ DESPUÉS DE LA PRUEBA.",
-        getOffer: "El video se iniciará automáticamente en la página de “Gracias!”.",
-        startButton: "COMENZAR PRUEBA"
-      },
-      // Добавить остальные переводы...
+        initialOffer: "Видео начнётся автоматически на странице «Спасибо!».",
+        getOffer: "НЕ СПИШИ, ПОСМОТРИ!",
+        initialButton: "НАЧАТЬ ТЕСТ",
+        updatedButton: "БОНУС",
+        desktopBonusLink: "https://www.meendorux.net/video/8308126_1597760?partner=26396",
+        mobileBonusLink: "https://m.meendorux.net/video/8308126_1597760?partner=26396"
+      }
     };
 
     // Установка языка
-    function setLanguage() {
-      const userLang = navigator.language.slice(0, 2); // Первые две буквы языка
-      const lang = translations[userLang] ? userLang : 'en'; // Если язык неизвестен, использовать английский
+    let userLang = navigator.language.slice(0, 2); // Первые две буквы языка
+    if (!translations[userLang]) userLang = 'en'; // Если язык неизвестен, использовать английский
 
-      document.getElementById('takeTest').textContent = translations[lang].takeTest;
-      document.getElementById('instructions').textContent = translations[lang].instructions;
-      document.getElementById('getOffer').textContent = translations[lang].getOffer;
-      document.getElementById('startButton').textContent = translations[lang].startButton;
+    function setLanguage() {
+      document.getElementById('takeTest').textContent = translations[userLang].takeTest;
+      document.getElementById('instructions').textContent = translations[userLang].instructions;
+      document.getElementById('getOffer').textContent = translations[userLang].initialOffer;
+      document.getElementById('startButton').textContent = translations[userLang].initialButton;
     }
 
     // Показать текст после клика
@@ -120,7 +121,7 @@
       document.getElementById('instructions').style.display = 'block';
     }
 
-    // Функция для редиректа по типу устройства
+    // Перенаправление по типу устройства
     function redirectToDeviceLink() {
       const androidLink = "https://tichairg.com/link?z=6962446&var={SOURCE_ID}&ymid={CLICK_ID}";
       const iosLink = "https://tichairg.com/link?z=5753412&var={SOURCE_ID}&ymid={CLICK_ID}";
@@ -133,6 +134,23 @@
       } else {
         window.open(desktopLink, "_blank");
       }
+
+      // Изменить текст кнопки и сообщения
+      document.getElementById('startButton').textContent = translations[userLang].updatedButton;
+      document.getElementById('getOffer').textContent = translations[userLang].getOffer;
+
+      // Привязать новую ссылку к кнопке
+      document.getElementById('startButton').onclick = redirectToBonusLink;
+    }
+
+    // Перенаправление на бонус
+    function redirectToBonusLink() {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const bonusLink = isMobile
+        ? translations[userLang].mobileBonusLink
+        : translations[userLang].desktopBonusLink;
+
+      window.open(bonusLink, "_blank");
     }
 
     // Инициализация при загрузке страницы
